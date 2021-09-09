@@ -28,9 +28,9 @@ initialLearningRateLast = 1e-2
 initialLearningRateNoLast = 1e-3
 nbOuterLearning =10
 nTest = 1
-#ckpt_bsde = 'saved_parameters/FNL_EMDBDP_1/BoundedFNLEMDBDPd1nbNeur11nbHL2ndt120Alpha100BSDE_1'
-ckpt_bsde = 'save_bounded_fnlemdbdp/BoundedFNLEMDBDPd1nbNeur11nbHL2ndt120Alpha100BSDE_1'
-#ckpt_bsde = 'saved_parameters/MA_EMDBDP_1/MongeAmpereEMDBDPd1nbNeur11nbHL2ndt120Alpha100BSDE_1'
+ckpt_bsde = 'saved_parameters/FNL_EMDBDP_1/BoundedFNLEMDBDPd1nbNeur11nbHL2ndt120Alpha100BSDE_1'
+#ckpt_bsde = 'save_bounded_fnlemdbdp/BoundedFNLEMDBDPd1nbNeur11nbHL2ndt120Alpha100BSDE_1'
+#ckpt_bsde = 'saved_parameters/MA_EMDBDP_1/MongeAmpereEMDBDPd2nbNeur12nbHL2ndt120BSDE_1'
 weights_step = 1
 n_layers_freeze = 2
 

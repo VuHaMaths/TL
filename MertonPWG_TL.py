@@ -19,17 +19,17 @@ print("nbLayer " ,nbLayer)
 rescal=1.
 T=1.
 
-batchSize= 2
-batchSizeVal= 2
-num_epoch= 2
-num_epochExtNoLast = 2
-num_epochExtLast= 2
+batchSize= 1000
+batchSizeVal= 10000
+num_epoch= 40
+num_epochExtNoLast = 100
+num_epochExtLast= 200
 initialLearningRateLast = 1e-2
 initialLearningRateNoLast = 1e-3
 nbOuterLearning = 10
 nTest = 1
-ckpt_bsde = 'saved_parameters/FNL_PWG_1/BoundedFNLPWGd1nbNeur11nbHL2ndt120Alpha100BSDE_1'
-# ckpt_bsde = 'saved_parameters/MA_PWG_1/BoundedFNLPWGd1nbNeur11nbHL2ndt2Alpha100GNet_iout_step40'
+#ckpt_bsde = 'saved_parameters/FNL_PWG_1/BoundedFNLPWGd1nbNeur11nbHL2ndt120Alpha100BSDE_1'
+ckpt_bsde = 'saved_parameters/MA_PWG_1/MongeAmperePWGd1nbNeur11nbHL2ndt120quantile1.0BSDE_1'
 weights_step = 1
 n_layers_freeze = 2
 

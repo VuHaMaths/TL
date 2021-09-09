@@ -25,11 +25,11 @@ num_epochExtLast = 20
 initialLearningRateLast = 1e-2
 initialLearningRateNoLast = 1e-3
 nbOuterLearning = 10
-nTest = 1
-ckpt_bsde = 'saved_parameters/FNL_PWG_10/BoundedFNLPWGd10nbNeur20nbHL2ndt120Alpha100BSDE_1'
-# ckpt_bsde = 'saved_parameters/FNL_PWG_5/BoundedFNLPWGd2nbNeur12nbHL2ndt2Alpha100GNet_iout_step40'
-# ckpt_bsde = 'saved_parameters/MA_PWG_10/MongeAmperePWGd2nbNeur12nbHL2ndt2Alpha100GNet_iout_step40'
-# ckpt_bsde = 'saved_parameters/MA_PWG_5/MongeAmperePWGd2nbNeur12nbHL2ndt2Alpha100GNet_iout_step40'
+nTest = 3
+#ckpt_bsde = 'saved_parameters/FNL_PWG_10/BoundedFNLPWGd10nbNeur20nbHL2ndt120Alpha100BSDE_1'
+# ckpt_bsde = 'saved_parameters/FNL_PWG_5/BoundedFNLPWGd5nbNeur15nbHL2ndt120Alpha100BSDE_1'
+ckpt_bsde = 'saved_parameters/MA_PWG_10/MongeAmperePWGd10nbNeur20nbHL2ndt120quantile1.0BSDE_1'
+# ckpt_bsde = 'saved_parameters/MA_PWG_5/MongeAmperePWGd5nbNeur15nbHL2ndt120quantile1.0BSDE_1'
 weights_step = 1
 n_layers_freeze = 2
 

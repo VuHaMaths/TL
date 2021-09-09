@@ -30,8 +30,8 @@ nTest = 1
 ckpt_bsde = 'saved_parameters/FNL_EMDBDP_10/BoundedFNLEMDBDPd10nbNeur20nbHL2ndt120Alpha100BSDE_1'
 # ckpt_bsde = 'saved_parameters/FNL_EMDBDP_5/BoundedFNLEMDBDPd5nbNeur15nbHL2ndt120Alpha100BSDE_1'
 
-# ckpt_bsde = 'saved_parameters/MA_EMDBDP_10/MongeAmpereEMDBDPd10nbNeur20nbHL2ndt120Alpha100BSDE_1'
-# ckpt_bsde = 'saved_parameters/MA_EMDBDP_5/MongeAmpereEMDBDPd5nbNeur15nbHL2ndt120Alpha100BSDE_1'
+# ckpt_bsde = 'saved_parameters/MA_EMDBDP_10/MongeAmpereEMDBDPd10nbNeur20nbHL2ndt120BSDE_1'
+# ckpt_bsde = 'saved_parameters/MA_EMDBDP_5/MongeAmpereEMDBDPd5nbNeur15nbHL2ndt120BSDE_1'
 weights_step = 1
 n_layers_freeze = 2
 

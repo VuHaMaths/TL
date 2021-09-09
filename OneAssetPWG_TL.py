@@ -26,8 +26,8 @@ initialLearningRateLast = 1e-2
 initialLearningRateNoLast = 1e-3
 nbOuterLearning = 2
 nTest = 2
-ckpt_bsde = 'saved_parameters/FNL_PWG_2/BoundedFNLPWGd2nbNeur12nbHL2ndt2Alpha100GNet_iout_step40'
-# ckpt_bsde = 'saved_parameters/MA_PWG_2/MongeAmperePWGd2nbNeur12nbHL2ndt2Alpha100GNet_iout_step40'
+ckpt_bsde = 'saved_parameters/FNL_PWG_2/BoundedFNLPWGd2nbNeur12nbHL2ndt120Alpha100BSDE_1'
+# ckpt_bsde = 'saved_parameters/MA_PWG_2/MongeAmperePWGd2nbNeur12nbHL2ndt120quantile1.0BSDE_1'
 weights_step = 40
 n_layers_freeze = 2
 

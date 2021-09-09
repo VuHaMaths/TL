@@ -29,8 +29,8 @@ nbOuterLearning =10
 nTest = 10
 ckpt_bsde = 'saved_parameters/FNL_MDBDP_2/BoundedFNLMDBDPd2nbNeur12nbHL2ndt12030Alpha100BSDE_1'
 ckpt_gam = 'saved_parameters/FNL_MDBDP_2/BoundedFNLMDBDPd2nbNeur12nbHL2ndt12030Alpha100Gam_1'
-# ckpt_bsde = 'saved_parameters/MA_MDBDP_2/MongeAmpereMDBDPd2nbNeur12nbHL2ndt12030Alpha100BSDE_1'
-# ckpt_gam = 'saved_parameters/MA_MDBDP_2/MongeAmpereMDBDPd2nbNeur12nbHL2ndt12030Alpha100Gam_1'
+# ckpt_bsde = 'saved_parameters/MA_MDBDP_2/MongeAmpereMDBDPd2nbNeur12nbHL2ndt12030BSDE_1'
+# ckpt_gam = 'saved_parameters/MA_MDBDP_2/MongeAmpereMDBDPd2nbNeur12nbHL2ndt12030Gam_1'
 weights_step = 1
 n_layers_freeze = 2
 
