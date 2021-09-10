@@ -72,16 +72,19 @@ class PDEFNLSolve2OptZGPU(PDEFNLSolveBaseGPU):
         dic["weightLoc"], dic["biasLoc"] = self.networkGam.getBackWeightAndBias(iStep)
         dic["Loss"] = tf.reduce_mean(tf.pow(dic["Gam"] - GamTraj, 2))
 
-        # Freeze and preload some weights
+        # Havu: Freeze layers and load parameters
         if is_trained_from_zero:
+            self.networkUZ.preload_weights(iStep, sess)
+            self.networkGam.preload_weights(iStep, sess)
             self.networkUZ.freeze_layers(iStep)
             self.networkGam.freeze_layers(iStep)
+
         dic["train"] = tf.compat.v1.train.AdamOptimizer(learning_rate=dic["LRate"]).minimize(dic["Loss"])
 
-        # Init weights
+        # Havu: Init parameters
         sess.run(tf.compat.v1.global_variables_initializer())
 
-        # Redo weights loading because variables initializing resets their values.
+        # Havu: Load parameters.
         if is_trained_from_zero:
             self.networkUZ.preload_weights(iStep, sess)
             self.networkGam.preload_weights(iStep, sess)
@@ -90,17 +93,12 @@ class PDEFNLSolve2OptZGPU(PDEFNLSolveBaseGPU):
 
     # calculate Gamma by conditionnal expectation
     def buildGamStep0(self, ListWeightUZ, ListBiasUZ, ListWeightGam, ListBiasGam, Gam0_initializer, sess):
+
         dic = {}
         dic["LRate"] = tf.compat.v1.placeholder(tf.float32, shape=[], name="learning_rate")
         dic["RandG"] = tf.compat.v1.placeholder(dtype=tf.float32, shape=[None, self.d, 1], name='randG')
-        #from networks.global_vars import CKPT_PATH_GAMMA
-        #from networks.tf_utils import load_tensor_from_ckpt
+
         print(f'input Gam0_initializer={Gam0_initializer}')
-        #if CKPT_PATH_GAMMA is not None:
-           # Gam0_initializer = load_tensor_from_ckpt(CKPT_PATH_GAMMA, 'Gam0')
-            #print('Successfully loaded Gam0 weights.')
-            #print(f'Gam0_initializer={Gam0_initializer}')
-            #Gam0_initializer = tf.constant_initializer(Gam0_initializer)
 
         dic["Gam0"] = tf.compat.v1.get_variable("Gam0", [self.d, self.d], tf.float32, Gam0_initializer)
         sample_size = tf.shape(dic["RandG"])[0]
@@ -124,10 +122,6 @@ class PDEFNLSolve2OptZGPU(PDEFNLSolveBaseGPU):
         dic["Loss"] = tf.reduce_mean(tf.pow(dic["Gam0"] - GamTraj, 2))
 
         dic["train"] = tf.compat.v1.train.AdamOptimizer(learning_rate=dic["LRate"]).minimize(dic["Loss"])
-        # initialize variables
         sess.run(tf.compat.v1.global_variables_initializer())
-        # Load weights if needed
-       # from networks.global_vars import CKPT_PATH_BSDE_UZSTEP0, CKPT_PATH_BSDE_UZSTEP0_STEPVAL
-        #if CKPT_PATH_BSDE_UZSTEP0 is not None:
-            #self.networkUZ.preload_weights(CKPT_PATH_BSDE_UZSTEP0_STEPVAL, sess, name_of_scope=f'NetWorkUZNonTrain_', weights_path=CKPT_PATH_BSDE_UZSTEP0)
+
         return dic

@@ -19,11 +19,11 @@ print("nbLayer " ,nbLayer)
 rescal=1.
 T=1.
 
-batchSize= 1000
-batchSizeVal= 10000
-num_epoch=400
-num_epochExtNoLast =10
-num_epochExtLast= 200
+batchSize= 100
+batchSizeVal= 1000
+num_epoch=100
+num_epochExtNoLast =5
+num_epochExtLast= 50
 initialLearningRateLast = 1e-2
 initialLearningRateNoLast = 1e-3
 nbOuterLearning =10

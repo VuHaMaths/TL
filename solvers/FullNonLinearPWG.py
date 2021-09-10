@@ -51,6 +51,7 @@ class PDEFullNLExplictGamBase:
 
         # Havu: Freeze layers
         if is_trained_from_zero:
+            self.networkUZ.preload_weights(iStep, sess)
             self.networkUZ.freeze_layers(iStep)
 
         self.train=tf.compat.v1.train.AdamOptimizer(learning_rate = self.learning_rate).minimize(self.total_loss)
@@ -175,8 +176,6 @@ class PDEFullNLExplicitGamAdapt(PDEFullNLExplictGamBase):
                 xValPrev = self.model.getValues(self.nbStep, self.TStep, self.xInit,batchSizeVal)
                 valLoss,Z =  sess.run([self.total_loss,self.Z], feed_dict= {  self.XPrev : xValPrev,  self.learning_rate :self.theLearningRate  })
 
-                #saver.save(sess, os.path.join(saveDir, baseFile + "BSDE_"+str(istep)))
-                #print(" GNet", valLoss, " iout", iout)
 
                 print("Validation Loss",valLoss)  
                 loss_hist_stop_criterion.append(valLoss)

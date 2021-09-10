@@ -112,23 +112,12 @@ class PDEFNLSolveBaseGPU:
     # BSDE at time 0
     def buildBSDEUStep0(self, ListWeightUZ, ListBiasUZ, ListWeightGam, ListBiasGam, Y0_initializer, Z0_initializer,
                         sess):
+        is_trained_from_zero = True
         dic = {}
         dic["LRate"] = tf.compat.v1.placeholder(tf.float32, shape=[], name="learning_rate")
         dic["RandG"] = tf.compat.v1.placeholder(dtype=tf.float32, shape=[None, self.d, self.nbStepUDU], name='randG')
         dic["Gam0"] = tf.compat.v1.placeholder(dtype=tf.float32, shape=[self.d, self.d], name='Gam0')
         sample_size = tf.shape(dic["RandG"])[0]
-        #from networks.global_vars import CKPT_PATH_BDSE
-        #from networks.tf_utils import load_tensor_from_ckpt
-        #print(f'input Y0_initializer={Y0_initializer}')
-        #print(f'input Z0_initializer={Z0_initializer}')
-        #if CKPT_PATH_BDSE is not None:
-            #Y0_initializer = load_tensor_from_ckpt(CKPT_PATH_BDSE, 'Y0')
-            #Z0_initializer = load_tensor_from_ckpt(CKPT_PATH_BDSE, 'Z0')
-            #print('Successfully loaded BSDE0 weights.')
-           # print(f'Y0_initializer={Y0_initializer}')
-            #print(f'Z0_initializer={Z0_initializer}')
-            #Y0_initializer = tf.constant_initializer(Y0_initializer)
-            #Z0_initializer = tf.constant_initializer(Z0_initializer)
 
         dic["Y0"] = tf.compat.v1.get_variable("Y0", [], tf.float32, Y0_initializer)
         dic["Z0"] = tf.compat.v1.get_variable("Z0", [self.d], tf.float32, Z0_initializer)
@@ -167,26 +156,20 @@ class PDEFNLSolveBaseGPU:
             iStepLoc = iStepLoc + 1
         # Loss
         dic["Loss"] = tf.reduce_mean(tf.pow(YNext - self.model.gTf(XNext), 2))
-        #from networks.global_vars import CKPT_PATH_BSDE_UZSTEP0, CKPT_PATH_BSDE_UZSTEP0_STEPVAL, \
-            #CKPT_PATH_GAM_UZSTEP0_STEPVAL, CKPT_PATH_GAM_UZSTEP0
-        #if CKPT_PATH_BSDE_UZSTEP0 is not None:
-           # self.networkUZ.freeze_layers(iStepLoc)
-
-
-       # if CKPT_PATH_GAM_UZSTEP0 is not None:
-        #    self.networkGam.freeze_layers(iStepLoc)
+        # Havu: freeze layers and load parameters
+        if is_trained_from_zero:
+            self.networkGam.preload_weights(iStepLoc, sess)
+            self.networkUZ.preload_weights(iStepLoc, sess)
+            self.networkGam.freeze_layers(iStepLoc)
+            self.networkUZ.freeze_layers(iStepLoc)
 
         dic["train"] = tf.compat.v1.train.AdamOptimizer(learning_rate=dic["LRate"]).minimize(dic["Loss"])
-        # initialize variables
+        #Havu: initialize variables
         sess.run(tf.compat.v1.global_variables_initializer())
-        # Load weights if needed
-
-       # if CKPT_PATH_BSDE_UZSTEP0 is not None:
-            #self.networkUZ.preload_weights(CKPT_PATH_BSDE_UZSTEP0_STEPVAL, sess, name_of_scope=f'NetWorkUZNonTrain_',
-                                           #weights_path=CKPT_PATH_BSDE_UZSTEP0)
-        #if CKPT_PATH_GAM_UZSTEP0 is not None:
-            #self.networkGam.preload_weights(CKPT_PATH_GAM_UZSTEP0_STEPVAL, sess, name_of_scope=f'NetWorkGamNotTrain_',
-                                           # weights_path=CKPT_PATH_GAM_UZSTEP0)
+        #Havu: Load parameters
+        if is_trained_from_zero:
+            self.networkGam.preload_weights(iStepLoc, sess)
+            self.networkUZ.preload_weights(iStepLoc, sess)
 
         return dic
 
