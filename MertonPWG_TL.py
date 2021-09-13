@@ -21,8 +21,8 @@ T=1.
 
 batchSize= 1000
 batchSizeVal= 10000
-num_epoch= 40
-num_epochExtNoLast = 100
+num_epoch= 400
+num_epochExtNoLast = 10
 num_epochExtLast= 200
 initialLearningRateLast = 1e-2
 initialLearningRateNoLast = 1e-3

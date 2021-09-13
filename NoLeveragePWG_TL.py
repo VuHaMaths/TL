@@ -19,26 +19,26 @@ T = 1.
 
 batchSize = 1000
 batchSizeVal = 10000
-num_epoch = 50
-num_epochExtNoLast = 100
-num_epochExtLast = 20
+num_epoch = 400
+num_epochExtNoLast = 200
+num_epochExtLast = 100
 initialLearningRateLast = 1e-2
 initialLearningRateNoLast = 1e-3
 nbOuterLearning = 10
-nTest = 3
+nTest = 1
 #ckpt_bsde = 'saved_parameters/FNL_PWG_10/BoundedFNLPWGd10nbNeur20nbHL2ndt120Alpha100BSDE_1'
-# ckpt_bsde = 'saved_parameters/FNL_PWG_5/BoundedFNLPWGd5nbNeur15nbHL2ndt120Alpha100BSDE_1'
-ckpt_bsde = 'saved_parameters/MA_PWG_10/MongeAmperePWGd10nbNeur20nbHL2ndt120quantile1.0BSDE_1'
+ckpt_bsde = 'saved_parameters/FNL_PWG_5/BoundedFNLPWGd5nbNeur15nbHL2ndt120Alpha100BSDE_1'
+#ckpt_bsde = 'saved_parameters/MA_PWG_10/MongeAmperePWGd10nbNeur20nbHL2ndt120quantile1.0BSDE_1'
 # ckpt_bsde = 'saved_parameters/MA_PWG_5/MongeAmperePWGd5nbNeur15nbHL2ndt120quantile1.0BSDE_1'
 weights_step = 1
 n_layers_freeze = 2
 
-lamb = np.array([1.5, 1.1, 2., 0.8, 0.5, 1.7, 0.9, 1., 0.9, 1.5], dtype=np.float32)[0:9]
+lamb = np.array([1.5, 1.1, 2., 0.8, 0.5, 1.7, 0.9, 1., 0.9, 1.5], dtype=np.float32)[0:4]
 eta = 0.5
-theta = np.array([0.1, 0.2, 0.3, 0.4, 0.25, 0.15, 0.18, 0.08, 0.91, 0.4], dtype=np.float32)[0:9]
-gamma = np.array([0.2, 0.15, 0.25, 0.31, 0.4, 0.35, 0.22, 0.4, 0.15, 0.2], dtype=np.float32)[0:9]
-kappa = np.array([1., 0.8, 1.1, 1.3, 0.95, 0.99, 1.02, 1.06, 1.6, 1.], dtype=np.float32)[0:9]
-sigma = np.ones(10, dtype=np.float32)[0:9]
+theta = np.array([0.1, 0.2, 0.3, 0.4, 0.25, 0.15, 0.18, 0.08, 0.91, 0.4], dtype=np.float32)[0:4]
+gamma = np.array([0.2, 0.15, 0.25, 0.31, 0.4, 0.35, 0.22, 0.4, 0.15, 0.2], dtype=np.float32)[0:4]
+kappa = np.array([1., 0.8, 1.1, 1.3, 0.95, 0.99, 1.02, 1.06, 1.6, 1.], dtype=np.float32)[0:4]
+sigma = np.ones(10, dtype=np.float32)[0:4]
 d = lamb.shape[0] + 1
 
 nbNeuron = d + 10

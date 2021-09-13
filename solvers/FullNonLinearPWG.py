@@ -69,7 +69,7 @@ class PDEFullNLExplictGamBase:
         self.GammaOut= tf.reshape(tf.concat(self.GammaOut,axis=1), [sample_size ,self.d,self.d])
 
     # Build for t=0
-    def build0(self):                                         
+    def build0(self):
         self.learning_rate=tf.compat.v1.placeholder(tf.float32, shape=[], name="learning_rate")
         self.dWSig= tf.compat.v1.placeholder(dtype=tf.float32, shape=[None, self.d], name='DWT') 
         self.UNext=tf.compat.v1.placeholder(dtype=tf.float32, shape=[None], name='UNext')

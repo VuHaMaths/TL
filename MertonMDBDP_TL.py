@@ -29,14 +29,16 @@ num_epochExtLast= 200
 initialLearningRateLast = 1e-2
 initialLearningRateNoLast = 1e-3
 nbOuterLearning =10
-nTest = 1
+nTest = 10
 # Havu: folder for the pretrained parameters, first pair uses BoundedFNL
-ckpt_bsde = 'saved_parameters/FNL_MDBDP_1/BoundedFNLMDBDPd1nbNeur11nbHL2ndt12030Alpha100BSDE_1'
-ckpt_gam = 'saved_parameters/FNL_MDBDP_1/BoundedFNLMDBDPd1nbNeur11nbHL2ndt12030Alpha100Gam_1'
+#ckpt_bsde = 'saved_parameters/FNL_MDBDP_1/BoundedFNLMDBDPd1nbNeur11nbHL2ndt12030Alpha100BSDE_1'
+#ckpt_gam = 'saved_parameters/FNL_MDBDP_1/BoundedFNLMDBDPd1nbNeur11nbHL2ndt12030Alpha100Gam_1'
 
-#this pair uses Monge Ampere equation
-#ckpt_bsde = 'saved_parameters/MA_MDBDP_1/MongeAmpereMDBDPd1nbNeur11nbHL2ndt12030BSDE_1'
-#ckpt_gam = 'saved_parameters/MA_MDBDP_1/MongeAmpereMDBDPd1nbNeur11nbHL2ndt12030Gam_1'
+# Havu: this pair uses Monge Ampere equation
+ckpt_bsde = 'saved_parameters/MA_MDBDP_1/MongeAmpereMDBDPd1nbNeur11nbHL2ndt12030BSDE_1'
+ckpt_gam = 'saved_parameters/MA_MDBDP_1/MongeAmpereMDBDPd1nbNeur11nbHL2ndt12030Gam_1'
+# Havu: if there are parameters from different time steps saved in the ckpt-file, we use parameters of the last step,
+# i.e. step 1
 weights_step = 1
 # Havu: number of layers to freeze (first or the first two)
 n_layers_freeze = 2
@@ -67,7 +69,7 @@ theNetworkGam = net.FeedForwardGam(d,layerSize,tf.nn.tanh,
                                    num_layers_to_load_and_freeze=n_layers_freeze,
                                    path_saved_checkpoint=ckpt_gam, weights_step=weights_step)
 
-ndt = [(10,2)]
+ndt = [(30,10)]
 
 print("PDE Merton MDBDP  Dim ", d,
       " layerSize ", layerSize,

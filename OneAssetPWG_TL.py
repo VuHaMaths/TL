@@ -17,18 +17,18 @@ print("nbLayer " ,nbLayer)
 rescal=1.
 T=1.
 
-batchSize= 2
-batchSizeVal= 2
-num_epoch= 2
-num_epochExtNoLast = 2
-num_epochExtLast= 2
+batchSize= 1000
+batchSizeVal= 10000
+num_epoch= 400
+num_epochExtNoLast = 10
+num_epochExtLast= 200
 initialLearningRateLast = 1e-2
 initialLearningRateNoLast = 1e-3
-nbOuterLearning = 2
-nTest = 2
+nbOuterLearning = 10
+nTest = 1
 ckpt_bsde = 'saved_parameters/FNL_PWG_2/BoundedFNLPWGd2nbNeur12nbHL2ndt120Alpha100BSDE_1'
 # ckpt_bsde = 'saved_parameters/MA_PWG_2/MongeAmperePWGd2nbNeur12nbHL2ndt120quantile1.0BSDE_1'
-weights_step = 40
+weights_step = 1
 n_layers_freeze = 2
 
 lamb = np.array([1.], dtype=np.float32)
@@ -56,7 +56,7 @@ theNetwork = net.FeedForwardUZ(d,layerSize,tf.nn.tanh,
                                  num_layers_to_load_and_freeze=n_layers_freeze,
                                  path_saved_checkpoint=ckpt_bsde, weights_step=weights_step)
 
-ndt = [2]
+ndt = [30]
 
 
 print("PDE One Asset PWG  Dim ", d,
